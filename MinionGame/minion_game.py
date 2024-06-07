@@ -1,30 +1,31 @@
 def minion_game(string):
-    string_upper = string.upper()
-    n = len(string_upper)
+    n = len(string)
+    if (n <= 0 or n > 10000000):
+        print('Insert a valid input')
+        return False
 
     starts_vowel = 0
     starts_consonants = 0
 
-    vowels = ['A','E', 'I', 'O', 'U']
+    vowels = ['A', 'E', 'I', 'O', 'U']
     
-    if (n <= 0 or n >= 10**6):
-        print('Insert a valid input')
-        return
-        
     for i in range(n):
 
-        if (string_upper[i] in vowels):
-            starts_vowel += len(string_upper[i:n])
+        if (string[i] in vowels):
+            starts_vowel += n - i
 
         else:
-            starts_consonants += len(string_upper[i:n])
+            starts_consonants += n - i
 
     if (starts_consonants > starts_vowel):
-        print(f'Kevin {starts_consonants}')
+        print(f'Stuart {starts_consonants}')
 
-    else:
-        print(f'Stuart {starts_vowel}')
+    if (starts_consonants == starts_vowel):
+        print('Draw')
 
+    if (starts_consonants < starts_vowel):
+        print(f'Kevin {starts_vowel}')
 
-s = input()
-minion_game(s)
+if __name__ == '__main__':
+    s = input()
+    minion_game(s)
